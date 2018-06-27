@@ -116,20 +116,33 @@ escapeinside={\%*}{*)}					% if you want to add a comment within your code
 		\colorbox{red}{noch bearbeiten}
 		\item \textbf{Was ist die Bedeutung der Divergenz und der Rotation eines Vektorfeldes?}
 			\begin{itemize}
-				\item Divergenz: $\nabla\vec{r}=\frac{\partial r_x}{\partial x}+\frac{\partial r_y}{\partial y}+\frac{\partial r_z}{\partial z}$
+				\item Divergenz: $\nabla\vec{r}$ $\Rightarrow$ Stärke des Auseinanderstrebens
+				\item Rotation: $\nabla\times\vec{r}$ $\Rightarrow$ ordnet einem Vektorfeld ein neues Vektorfeld zu
 			\end{itemize}
-		\\\colorbox{red}{noch bearbeiten}
 		\item \textbf{Wie konstruiert man Gradient, Divergenz, Rotation und Laplace-Operator in
-krummlinigen Koordinaten?}
+krummlinigen Koordinaten?}\\
 		\\\colorbox{red}{noch bearbeiten}
 		\item \textbf{Wie berechnet man ein skalares bzw. vektorielles Kurvenintegral?}
-		\\\colorbox{red}{noch bearbeiten}
+		\begin{itemize}
+			\item skalares Kurvenintegral: $\int_\gamma fds:=\int_a^bf(\gamma(t))\cdot|\dot{\gamma}(t)|dt$
+			\item vektorielles Kurvenintegral: $\int_\gamma \vec{f}d\vec{s}:=\int_a^b\vec{f}(\vec{\gamma}}(t))\cdot|\dot{\vec{\gamma}}(t)|dt$
+		\end{itemize}
 		\item \textbf{Wie berechnet man ein skalares bzw. vektorielles Flächenintegral in kartesischen, Zylinder- oder Kugelkoordinaten?}
 		\\\colorbox{red}{noch bearbeiten}
 		\item \textbf{Wie lauten der Satz von Gauß und der Satz von Stokes?}
-		\\\colorbox{red}{noch bearbeiten}
+			\begin{itemize}
+				\item Satz von Gauß: $\int_\nu d^3x(\nabla\cdot\vec{A})=\int_{\partial\nu}d\vec{f}\cdot\vec{A}$
+				\item Satz von Stokes: $\int_{\partial F}d\vec{f}\cdot(\nabla\times\vec{A})=\int_{\partial F}d\vec{r}\cdot\vec{A}$
+			\end{itemize}
 		\item \textbf{Was sind die Eigenschaften der Delta-Distribution?}
-		\\\colorbox{red}{noch bearbeiten}
+			\begin{enumerate}
+				\item $\delta(x-c)=
+				\begin{cases}
+					0 & x\neq c\\
+					\infty & x=c
+				\end{cases}$	
+				\item $\int_{-\infty}^\infty\delta(x-c)dx=1$
+			\end{enumerate}
 		\item \textbf{Wie steht der Laplace-Operator mit der Delta-Distribution in Verbindung?}
 		\\\colorbox{red}{noch bearbeiten}
 		\item \textbf{Was besagt das Helmholtz Theorem?}\\
