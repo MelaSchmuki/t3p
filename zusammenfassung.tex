@@ -1,0 +1,134 @@
+% Formelsammlung Numerische Methoden der Elektrotechnik
+%
+% Geschrieben im SS 2014 an der TU München
+% von Markus Hofbauer, Kevin Meyer und Benedikt Schmidt für LaTeX4EI
+% based on template from www.latex4ei.de
+% Kontakt: latex@kevin-meyer.de oder via Kontaktformular auf http://latex4ei.de
+% Aktuelle Versionen auf https://makeappdev.github.io/TUM-Projekte/
+
+% Dokumenteinstellungen
+% ======================================================================
+\documentclass[german]{latex4ei/latex4ei_sheet}
+\usepackage[european]{circuitikz}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usetikzlibrary{arrows, calc, intersections}
+\usepackage{calc}
+
+% Für code
+\definecolor{COMMENTGREEN}{HTML}{228B22}
+\definecolor{MATLABBACKGROUND}{HTML}{FCFCDC}
+\lstset{ %
+language=Matlab,						% choose the language of the code
+%basicstyle=\ttfamily,					% the size of the fonts that are used for the code
+%emphstyle=\color{yellow}\ttfalily,
+%keywordstyle=\color{blue}\ttfamily,
+%stringstyle=\color{magenta}\ttfamily,
+%commentstyle=\color{COMMENTGREEN}\ttfamily,
+xleftmargin=10.3pt,						% distance to margin left
+xrightmargin=-3pt,						% distance to margin right
+%linewidth=\widthof{\begin{sectionbox}}}		% this would be better instead of left and right margin
+%aboveskip=0.6\baselineskip,
+%belowskip=0\baselineskip,
+numbers=left,                   		% where to put the line-numbers
+%framexleftmargin=1.5em,					% distance to xleftmargin
+%numberstyle=\ttfamily\footnotesize,		% the size of the fonts that are used for the line-numbers
+%stepnumber=1,							% the step between two line-numbers. If it is 1 each line will be numbered
+%numbersep=5pt,							% how far the line-numbers are from the code
+%backgroundcolor=\color{MATLABBACKGROUND},	% choose the background color. You must add \usepackage{color}
+%showspaces=false,						% show spaces adding particular underscores
+%showstringspaces=false,					% underline spaces within strings
+%showtabs=false,							% show tabs within strings adding particular underscores
+%frame=single,							% adds a frame around the code (Box) (Für top und bottom rule set option to "lines")
+%rulecolor=\color{gray},					% color of framebox rule
+%tabsize=4,								% sets default tabsize to 2 spaces
+%captionpos=b,							% sets the caption-position to bottom
+breaklines=true,						% sets automatic line breaking
+breakatwhitespace=false,				% sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}					% if you want to add a comment within your code
+}
+
+% tabularx definition
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{@{\extracolsep\fill}X}
+
+% SI-Zahlen mit Komma als Dezimaltrenner
+\sisetup{locale=DE}
+
+% SI-Einheiten
+\DeclareSIUnit\voltampere{VA}
+\DeclareSIUnit\var{Var}
+\DeclareSIUnit\newtonmeter{Nm}
+\DeclareSIUnit\voltsecond{Vs}
+\DeclareSIUnit\amperesecond{As}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\cond}{cond}
+\DeclareMathOperator{\rang}{rang}
+
+\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\defect}{def}
+
+% Title
+\title{T3p: Elektrodynamik}
+\author{Marcus Müller}
+\myemail{marcus.mueller@physik.uni-muenchen.de}
+\mywebsite{}
+
+% Dokumentbeginn
+% ======================================================================
+\begin{document}
+
+\IfFileExists{git.id}{\input{git.id}}{}
+\ifdefined\GitRevision\mydate{\GitNiceDate\ (git \GitRevision)}\fi
+
+\maketitle
+\section{Mathematische Grundlagen}
+
+\begin{sectionbox}
+	\begin{itemize}
+		\item \textbf{Wie lauten Skalar- und Vektorprodukt in Indexnotation?} 
+		\begin{itemize}
+			\item Skalarprodukt: $\vec{x}\cdot\vec{y}=x^iy_i$ 
+			\item Vektorprodukt/Kreuzprodukt: $\vec{x}\times\vec{y}=\varepsilon_{ijk}a_ib_j\vec{e}_k$
+		\end{itemize}
+		\item \textbf{Was ist das Ergebnis von $\partial_ir_j$?}
+		\begin{equation}
+			\partial_ir_j=\left(
+			\begin{matrix}
+  				\partial_1r_1 & ... &\partial_1r_m \\
+ 				... &... & ...\\
+ 				\partial_nr_1 &... & \partial_nr_m
+			\end{matrix}\right)
+		\end{equation}
+		\item \textbf{Was ergibt die Kontraktion $\varepsilon_{ijk}\varepsilon_{klm}$ und wie können Sie sich diese merken?}
+		\begin{equation}
+			\varepsilon_{ijk}\varepsilon_{klm}=\delta_{jl}\delta_{km}-\delta_{km}\delta_{kl}
+		\end{equation}
+		
+		\item \textbf{Wie definieren Sie die Menge, die eine Kugel K um einen\\
+		 beliebigen Punkt beschreibt? Wie definieren sie deren Rand $\partial K$? Wie lauten die zugehörigen Parametrisierungen}\\
+		$K: (x−x_M)^2+(y−y_M)^2+(z−z_M)^2=r^2$
+		\colorbox{red}{noch bearbeiten}
+		\item \textbf{Wie lauten die Mengen und die Parametrisierungen der letzten Frage für einen Zylinder Z um eine beliebige zu $e_z$ parallele Achse? Wie lauten sie für eine zur xy-Ebene parallele Kreisscheibe S mit beliebigem Zentrum?}\\
+		\colorbox{red}{noch bearbeiten}
+		\item \textbf{Was ist die Bedeutung der Divergenz und der Rotation eines Vektorfeldes?}
+			\begin{itemize}
+				\item Divergenz: $\nabla$
+			\end{itemize}
+		\item \textbf{Wie konstruiert man Gradient, Divergenz, Rotation und Laplace-Operator in
+krummlinigen Koordinaten?}
+		\item \textbf{Wie berechnet man ein skalares bzw. vektorielles Kurvenintegral?}
+		\item \textbf{Wie berechnet man ein skalares bzw. vektorielles Flächenintegral in kartesischen, Zylinder- oder Kugelkoordinaten?}
+		\item \textbf{Wie lauten der Satz von Gauß und der Satz von Stokes?}
+		\item \textbf{Was sind die Eigenschaften der Delta-Distribution?}
+		\item \textbf{Wie steht der Laplace-Operator mit der Delta-Distribution in Verbindung?}
+		\item \textbf{Was besagt das Helmholtz Theorem?}
+	\end{itemize}	
+\end{sectionbox}
+\section{Maxwell-Gleichungen}
+\tiny{based on template from www.latex4ei.de}
+
+\end{document}
